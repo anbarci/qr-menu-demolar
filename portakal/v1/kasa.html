@@ -67,8 +67,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .c-ayak a { color: var(--krem); font-weight: 600; display: inline-flex; min-height: 44px; align-items: center; text-decoration-color: var(--portakal); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .c-bas h3 { font-size: clamp(2.6rem, 14vw, 4.1rem); }
 .c-zil { position: fixed; z-index: 11; top: calc(env(safe-area-inset-top, 0px) + 0.9rem); right: max(1rem, calc((100vw - 32rem) / 2 + 1rem)); transition: top 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out; width: 48px; height: 48px; border-radius: 50%; border: 0; background: var(--krem); color: var(--yaprak); display: grid; place-items: center; }
-.c-rozet { position: absolute; top: -3px; right: -3px; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 11px; background: var(--murekkep); color: var(--krem); font: 700 0.8125rem/22px var(--govde); text-align: center; }
+.c-rozet { position: absolute; top: -3px; right: -3px; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 11px; background: #D92D20; color: #fff; box-shadow: 0 0 0 2px var(--krem); animation: c-nabiz 2s ease-out infinite; font: 700 0.8125rem/22px var(--govde); text-align: center; }
 .c-rozet:empty { display: none; }
+@keyframes c-nabiz { 0% { box-shadow: 0 0 0 2px var(--krem), 0 0 0 2px rgb(217 45 32 / 0.6); } 70%, 100% { box-shadow: 0 0 0 2px var(--krem), 0 0 0 11px rgb(217 45 32 / 0); } }
+@media (prefers-reduced-motion: reduce) { .c-rozet { animation: none; } }
 .zil-yapisik .c-sekme { margin-right: 4rem; }
 .zil-yapisik body::after { content: ""; position: fixed; z-index: 10; top: 0; right: max(0px, calc((100vw - 32rem) / 2)); width: 4rem; height: calc(env(safe-area-inset-top, 0px) + 48px); background: var(--yaprak-koyu); }
 .zil-yapisik .c-zil { top: calc(env(safe-area-inset-top, 0px) + 2px); width: 44px; height: 44px; }
@@ -81,7 +83,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .c-panel li + li { border-top: 1px solid #EADFCB; }
 .c-panel a { display: block; min-height: 44px; padding: 0.65rem 0; color: inherit; text-decoration: none; line-height: 1.4; }
 .c-panel b, .c-toast b { display: block; font-size: 0.875rem; color: var(--yaprak); }
-.c-panel li.yeni b::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 0.4rem; border-radius: 50%; background: var(--portakal); vertical-align: 1px; }
+.c-panel li.yeni b::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 0.4rem; border-radius: 50%; background: #D92D20; vertical-align: 1px; }
 .c-panel small, .c-toast small { display: block; margin-top: 0.15rem; font-size: 0.8125rem; color: var(--soluk); }
 .c-toast { display: flex; align-items: flex-start; transition: transform 0.3s ease-out, opacity 0.3s ease-out; }
 .c-toast[hidden] { display: none; }
@@ -299,12 +301,13 @@ button { font: inherit; color: inherit; cursor: pointer; }
   toast.hidden=false;toast.classList.add('giris');requestAnimationFrame(function(){requestAnimationFrame(function(){toast.classList.remove('giris');});});
   var sure=setTimeout(toastKapa,8000);
   toast.addEventListener('pointerenter',function(){clearTimeout(sure);});toast.addEventListener('focusin',function(){clearTimeout(sure);});
-  // tarayıcılar dokunuş olmadan ses çalmaya izin vermez: çalamazsa bildirim açıkken ilk dokunuşta çalar
+  // tarayıcılar dokunuş olmadan ses ve titreşime izin vermez: çalamazsa okunmamış duyuru varken ilk dokunuşta çalar (dokunmatikte izin pointerup/touchend ile gelir)
   var C=window.AudioContext||window.webkitAudioContext;if(!C)return;var a=new C();
   function cal(){if(navigator.vibrate)navigator.vibrate([60,40,60]);[880,1318.5].forEach(function(f,i){var o=a.createOscillator(),g=a.createGain(),t=a.currentTime+i*0.15;o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.18,t+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t+0.4);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+0.45);});}
   if(a.state==='running'){cal();return;}
-  function ilk(){['pointerdown','keydown'].forEach(function(o){removeEventListener(o,ilk,true);});if(!toast.hidden)a.resume().then(cal);}
-  ['pointerdown','keydown'].forEach(function(o){addEventListener(o,ilk,true);});
+  var OLAY=['pointerup','touchend','mousedown','keydown'];
+  function ilk(){OLAY.forEach(function(o){removeEventListener(o,ilk,true);});if(yeni.length)a.resume().then(cal);}
+  OLAY.forEach(function(o){addEventListener(o,ilk,true);});
 })();
 </script>
 <script>

@@ -66,15 +66,47 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .c-ayak { margin-top: 1.5rem; background: var(--yaprak); color: var(--krem); padding: 1.3rem 1.1rem 2rem; display: grid; gap: 0.4rem; font-size: 0.9375rem; }
 .c-ayak a { color: var(--krem); font-weight: 600; display: inline-flex; min-height: 44px; align-items: center; text-decoration-color: var(--portakal); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .c-bas h3 { font-size: clamp(2.6rem, 14vw, 4.1rem); }
+.c-zil { position: absolute; z-index: 1; top: 0.9rem; right: 1rem; width: 48px; height: 48px; border-radius: 50%; border: 0; background: var(--krem); color: var(--yaprak); display: grid; place-items: center; }
+.c-rozet { position: absolute; top: -3px; right: -3px; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 11px; background: var(--murekkep); color: var(--krem); font: 700 0.8125rem/22px var(--govde); text-align: center; }
+.c-rozet:empty { display: none; }
+.c-panel, .c-toast { position: fixed; z-index: 10; top: calc(env(safe-area-inset-top, 0px) + 4.4rem); right: max(0.75rem, calc((100vw - 32rem) / 2 + 0.75rem)); width: min(21rem, calc(100vw - 1.5rem)); background: var(--krem); color: var(--murekkep); border: 2px solid var(--yaprak); border-radius: 6px; box-shadow: 0 8px 24px rgb(22 56 34 / 0.18); }
+.c-panel { padding: 0.4rem 0.9rem 0.3rem; }
+.c-panel-bas { margin: 0.4rem 0 0.2rem; font: 800 1.25rem/1.2 "Bricolage Grotesque", var(--govde); color: var(--yaprak); }
+.c-panel ul { list-style: none; margin: 0; padding: 0; }
+.c-panel li + li { border-top: 1px solid #EADFCB; }
+.c-panel a { display: block; min-height: 44px; padding: 0.65rem 0; color: inherit; text-decoration: none; line-height: 1.4; }
+.c-panel b, .c-toast b { display: block; font-size: 0.875rem; color: var(--yaprak); }
+.c-panel li.yeni b::before { content: ""; display: inline-block; width: 8px; height: 8px; margin-right: 0.4rem; border-radius: 50%; background: var(--portakal); vertical-align: 1px; }
+.c-panel small, .c-toast small { display: block; margin-top: 0.15rem; font-size: 0.8125rem; color: var(--soluk); }
+.c-toast { display: flex; align-items: flex-start; transition: transform 0.3s ease-out, opacity 0.3s ease-out; }
+.c-toast[hidden] { display: none; }
+.c-toast.giris { transform: translateY(-0.75rem); opacity: 0; }
+.c-toast-ac { flex: 1; min-width: 0; min-height: 44px; padding: 0.7rem 0 0.7rem 0.9rem; border: 0; background: none; text-align: left; line-height: 1.4; }
+.c-toast-kapat { width: 44px; height: 44px; flex-shrink: 0; border: 0; background: none; display: grid; place-items: center; }
+@media (hover: hover) { .c-panel a:hover { text-decoration: underline; text-underline-offset: 3px; } }
+@media (prefers-reduced-motion: reduce) { .c-toast { transition: none; } }
 </style>
 </head>
 <body class="c">
 <div class="sayfa">
       <header class="c-bas">
+        <button class="c-zil" type="button" aria-label="Duyurular" aria-expanded="false" aria-controls="c-duyurular" hidden><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 10a6 6 0 0 1 12 0c0 5 2 6.5 2 6.5H4S6 15 6 10"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="c-rozet" aria-hidden="true"></span></button>
         <div class="c-dilim" aria-hidden="true"></div>
         <h3>portakal<small>kampüs</small></h3>
         <p>Şu an açık, 02.00'de kapanır</p>
       </header>
+      <section class="c-panel" id="c-duyurular" aria-label="Duyurular" hidden>
+        <p class="c-panel-bas">Duyurular</p>
+        <ul>
+          <li data-duyuru="2026-10-22-happy"><a href="#c-happy"><b>İndirim</b>Happy hour her gün 15.00-18.00: buzlu latte 95 ₺, limonata 65 ₺.<small>Bugün</small></a></li>
+          <li data-duyuru="2026-10-22-milkshake"><a href="#c-soguk"><b>Yeni ürün</b>Çilekli milkshake menüde, 400 ml 150 ₺.<small>Bugün</small></a></li>
+          <li data-duyuru="2026-10-21-kart"><a href="#c-ayak"><b>Duyuru</b>Kartla ödeme yeniden alınıyor.<small>Dün</small></a></li>
+        </ul>
+      </section>
+      <div class="c-toast" role="status" aria-live="polite" hidden>
+        <button class="c-toast-ac" type="button"><span class="c-toast-metin"></span><small class="c-toast-ek"></small></button>
+        <button class="c-toast-kapat" type="button" aria-label="Bildirimi kapat"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
       <section class="c-happy" id="c-happy" aria-labelledby="c-happy-b"><h4 id="c-happy-b">Happy hour</h4>
         <p class="c-saat"><strong>15.00-18.00</strong>her gün</p>
         <p class="c-happy-durum" data-happy>Her gün 15.00-18.00 arası bu fiyatlar geçerli.</p>
@@ -101,7 +133,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
       <section class="c-bolum" id="c-tatli"><h4>Tatlılar</h4>
         <div class="c-urun c-yok"><b>Brownie</b><div class="c-etiket"><strong>130 ₺</strong><span>1 dilim</span></div><p class="c-p k">Alerjenler: gluten, süt, yumurta</p></div>
       </section>
-      <footer class="c-ayak">
+      <footer class="c-ayak" id="c-ayak">
         <b>Fiyatlara KDV dahildir. Servis, kuver ya da masa ücreti alınmaz.</b>
         <span>İçerik, alerjen ve kalori bilgisi bu karekodla verilir; isterseniz personelimiz sözlü bilgi verir.</span>
         <span>Kınıklı, Hüseyin Yılmaz Cd. No 62, Pamukkale</span>
@@ -118,6 +150,38 @@ button { font: inherit; color: inherit; cursor: pointer; }
   // kendiliğinden kayar; dokunulunca ya da azaltılmış harekette durur
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(function(){if(dur||document.hidden)return;var a=k.children[0].offsetWidth+12;k.scrollTo({left:((sira()+1)%k.children.length)*a,behavior:'smooth'});},4000);
   e.textContent=d>=900&&d<1080?'Şu an geçerli, 18.00\'e kadar.':d<900?'Bugün 15.00\'te başlar.':'Bitti, yarın 15.00\'te başlar.';
+})();
+</script>
+<script>
+(function(){
+  var zil=document.querySelector('.c-zil'),rozet=zil.querySelector('.c-rozet'),panel=document.getElementById('c-duyurular'),toast=document.querySelector('.c-toast');
+  var ogeler=[].slice.call(panel.querySelectorAll('[data-duyuru]')),ANAHTAR='portakal-duyuru',gorulen=[];
+  try{gorulen=JSON.parse(localStorage.getItem(ANAHTAR)||'[]');}catch(e){}
+  var yeni=ogeler.filter(function(o){return gorulen.indexOf(o.dataset.duyuru)<0;});
+  function say(){rozet.textContent=yeni.length||'';zil.setAttribute('aria-label',yeni.length?'Duyurular, '+yeni.length+' yeni':'Duyurular');}
+  function goruldu(){try{localStorage.setItem(ANAHTAR,JSON.stringify(ogeler.map(function(o){return o.dataset.duyuru;})));}catch(e){}yeni=[];say();}
+  function toastKapa(){toast.hidden=true;}
+  function ac(){ogeler.forEach(function(o){o.classList.toggle('yeni',yeni.indexOf(o)>-1);});panel.hidden=false;zil.setAttribute('aria-expanded','true');toastKapa();goruldu();}
+  function kapa(){panel.hidden=true;zil.setAttribute('aria-expanded','false');}
+  zil.hidden=false;say();
+  zil.addEventListener('click',function(){if(panel.hidden)ac();else kapa();});
+  panel.addEventListener('click',function(e){if(e.target.closest('a'))kapa();});
+  document.addEventListener('click',function(e){if(!panel.hidden&&!panel.contains(e.target)&&!zil.contains(e.target))kapa();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!panel.hidden){kapa();zil.focus();}});
+  toast.querySelector('.c-toast-ac').addEventListener('click',function(){ac();panel.querySelector('a').focus();});
+  toast.querySelector('.c-toast-kapat').addEventListener('click',toastKapa);
+  if(!yeni.length)return;
+  toast.querySelector('.c-toast-metin').replaceChildren.apply(toast.querySelector('.c-toast-metin'),[].slice.call(yeni[0].querySelector('a').cloneNode(true).childNodes).filter(function(n){return n.nodeName!=='SMALL';}));
+  toast.querySelector('.c-toast-ek').textContent=yeni.length>1?(yeni.length-1)+' yeni duyuru daha':'';
+  toast.hidden=false;toast.classList.add('giris');requestAnimationFrame(function(){requestAnimationFrame(function(){toast.classList.remove('giris');});});
+  var sure=setTimeout(toastKapa,8000);
+  toast.addEventListener('pointerenter',function(){clearTimeout(sure);});toast.addEventListener('focusin',function(){clearTimeout(sure);});
+  // tarayıcılar dokunuş olmadan ses çalmaya izin vermez: çalamazsa bildirim açıkken ilk dokunuşta çalar
+  var C=window.AudioContext||window.webkitAudioContext;if(!C)return;var a=new C();
+  function cal(){[880,1318.5].forEach(function(f,i){var o=a.createOscillator(),g=a.createGain(),t=a.currentTime+i*0.15;o.type='sine';o.frequency.value=f;g.gain.setValueAtTime(0.0001,t);g.gain.exponentialRampToValueAtTime(0.18,t+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t+0.4);o.connect(g);g.connect(a.destination);o.start(t);o.stop(t+0.45);});}
+  if(a.state==='running'){cal();return;}
+  function ilk(){['pointerdown','keydown'].forEach(function(o){removeEventListener(o,ilk,true);});if(!toast.hidden)a.resume().then(cal);}
+  ['pointerdown','keydown'].forEach(function(o){addEventListener(o,ilk,true);});
 })();
 </script>
 <script>

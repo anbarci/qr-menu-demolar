@@ -126,6 +126,23 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .c-yok .c-etiket { background: var(--gri-etiket); }
 .c-yok b::after { content: " bugün yok"; font-size: 0.875rem; font-weight: 600; color: #8A2E0A; }
 .c-danis { color: var(--murekkep); font-weight: 600; }
+.c-happy { background: var(--portakal); color: var(--murekkep); padding: 1rem 1.1rem 0.6rem; }
+.c-happy h4 { margin: 0; font: 800 1.9rem/1.05 "Bricolage Grotesque", var(--govde); letter-spacing: -0.03em; }
+.c-saat { margin: 0.2rem 0 0; font-weight: 600; }
+.c-saat strong { font: 800 1.5rem/1.1 "Bricolage Grotesque", var(--govde); font-variant-numeric: tabular-nums; margin-right: 0.3rem; }
+.c-happy-durum { margin: 0.15rem 0 0.2rem; font-weight: 600; }
+.c-happy .c-urun { border-bottom-color: rgb(26 26 20 / 0.2); }
+.c-happy .c-p, .c-happy .c-p.k { color: var(--murekkep); }
+.c-happy .c-etiket { background: var(--krem); }
+.c-happy .c-etiket::before { background: var(--portakal); }
+.c-etiket s { display: block; font-size: 0.8125rem; color: var(--soluk); }
+.c-not { margin: 0.5rem 0 0; font-size: 0.875rem; }
+.c-kayan { display: flex; gap: 0.75rem; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0.6rem 0 0; }
+.c-kayan::-webkit-scrollbar { display: none; }
+.c-kayan .c-urun { flex: 0 0 100%; scroll-snap-align: start; border-bottom: 0; border-top: 1px solid rgb(26 26 20 / 0.2); }
+.c-nokta { display: flex; justify-content: center; gap: 0.5rem; padding: 0.2rem 0 0.1rem; }
+.c-nokta i { width: 8px; height: 8px; border-radius: 50%; background: rgb(26 26 20 / 0.3); transition: background-color 0.2s ease-out; }
+.c-nokta i.on { background: var(--murekkep); }
 .c-ayak { margin-top: 1.5rem; background: var(--yaprak); color: var(--krem); padding: 1.3rem 1.1rem 2rem; display: grid; gap: 0.4rem; font-size: 0.9375rem; }
 .c-ayak a { color: var(--krem); font-weight: 600; display: inline-flex; min-height: 44px; align-items: center; text-decoration-color: var(--portakal); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 </style>
@@ -208,7 +225,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
   <section class="yon" aria-labelledby="yc">
     <h2 id="yc">C. Kasa</h2>
-    <p>Adı portakal olan bir yer: yaprak yeşili üstünde kocaman portakal rengi ad ve köşeden taşan bir dilim. Her fiyat manavdaki gibi asılı bir etikette; "bugün yok" olunca etiket solar.</p>
+    <p>Adı portakal olan bir yer: yaprak yeşili üstünde kocaman portakal rengi ad ve köşeden taşan bir dilim. Her fiyat manavdaki gibi asılı bir etikette; "bugün yok" olunca etiket solar. En üstte happy hour saati ve indirimli ürünler: etikette eski fiyat üstü çizili, altında indirimli fiyat.</p>
     <div class="tel"><div class="ekran c">
       <header class="c-bas">
         <div class="c-dilim" aria-hidden="true"></div>
@@ -216,7 +233,18 @@ button { font: inherit; color: inherit; cursor: pointer; }
         <p>Şu an açık, 02.00'de kapanır</p>
         <button class="c-ara" type="button" aria-label="Menüde ara"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg></button>
       </header>
-      <nav class="c-sekme" aria-label="Kategoriler"><a href="#c-kahve" aria-current="location">Kahveler</a><a href="#c-soguk">Soğuklar</a><a href="#c-tost">Tostlar</a><a href="#c-burger">Burgerler</a><a href="#c-tatli">Tatlılar</a></nav>
+      <section class="c-happy" id="c-happy" aria-labelledby="c-happy-b"><h4 id="c-happy-b">Happy hour</h4>
+        <p class="c-saat"><strong>15.00-18.00</strong>her gün</p>
+        <p class="c-happy-durum" data-happy>Her gün 15.00-18.00 arası bu fiyatlar geçerli.</p>
+        <div class="c-kayan" role="region" aria-label="İndirimli ürünler, yana kaydırın" tabindex="0">
+        <div class="c-urun"><b>Buzlu latte</b><div class="c-etiket"><s>130 ₺</s><strong>95 ₺</strong><span>400 ml</span></div><p class="c-p">%27 indirim</p><p class="c-p k">Alerjenler: süt</p></div>
+        <div class="c-urun"><b>Limonata</b><div class="c-etiket"><s>90 ₺</s><strong>65 ₺</strong><span>400 ml</span></div><p class="c-p">%28 indirim</p></div>
+        <div class="c-urun"><b>Filtre kahve</b><div class="c-etiket"><s>90 ₺</s><strong>60 ₺</strong><span>300 ml</span></div><p class="c-p">%33 indirim</p></div>
+        </div>
+        <div class="c-nokta" aria-hidden="true"><i class="on"></i><i></i><i></i></div>
+        <p class="c-not">Üstü çizili fiyat, indirimden önceki 30 günün en düşük fiyatıdır.</p>
+      </section>
+      <nav class="c-sekme" aria-label="Kategoriler"><a href="#c-happy" aria-current="location">Happy hour</a><a href="#c-kahve">Kahveler</a><a href="#c-soguk">Soğuklar</a><a href="#c-tost">Tostlar</a><a href="#c-burger">Burgerler</a><a href="#c-tatli">Tatlılar</a></nav>
       <section class="c-bolum" id="c-kahve"><h4>Kahveler</h4>
         <div class="c-urun"><b>Türk Kahvesi</b><div class="c-etiket"><strong>70 ₺</strong><span>70 ml</span></div><p class="c-p">Közde, lokumla.</p><p class="c-p k">14 alerjenden hiçbirini içermez.</p></div>
         <div class="c-urun"><b>Latte</b><div class="c-etiket"><strong>120 ₺</strong><span>300 ml</span></div><p class="c-p">Espresso ve buharla ısıtılmış süt.</p><p class="c-p k">150 kcal. Alerjenler: süt</p></div>
@@ -241,3 +269,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
   </section>
 
 </main>
+<script>
+(function(){
+  var s=new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Istanbul'})),d=s.getHours()*60+s.getMinutes(),e=document.querySelector('[data-happy]');
+  var k=document.querySelector('.c-kayan'),nk=document.querySelectorAll('.c-nokta i'),dur=false;
+  function sira(){var a=k.children[0].offsetWidth+12;return Math.round(k.scrollLeft/a);}
+  k.addEventListener('scroll',function(){var i=sira();nk.forEach(function(n,j){n.classList.toggle('on',i===j);});},{passive:true});
+  ['pointerdown','touchstart','focusin','wheel'].forEach(function(o){k.addEventListener(o,function(){dur=true;},{passive:true});});
+  // kendiliğinden kayar; dokunulunca ya da azaltılmış harekette durur
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches)setInterval(function(){if(dur||document.hidden)return;var a=k.children[0].offsetWidth+12;k.scrollTo({left:((sira()+1)%k.children.length)*a,behavior:'smooth'});},4000);
+  e.textContent=d>=900&&d<1080?'Şu an geçerli, 18.00\'e kadar.':d<900?'Bugün 15.00\'te başlar.':'Bitti, yarın 15.00\'te başlar.';
+})();
+</script>

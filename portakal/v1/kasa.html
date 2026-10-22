@@ -66,17 +66,17 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .c-ayak { margin-top: 1.5rem; background: var(--yaprak); color: var(--krem); padding: 1.3rem 1.1rem 2rem; display: grid; gap: 0.4rem; font-size: 0.9375rem; }
 .c-ayak a { color: var(--krem); font-weight: 600; display: inline-flex; min-height: 44px; align-items: center; text-decoration-color: var(--portakal); text-decoration-thickness: 2px; text-underline-offset: 4px; }
 .c-bas h3 { font-size: clamp(2.6rem, 14vw, 4.1rem); }
-.c-zil { position: fixed; z-index: 11; top: calc(env(safe-area-inset-top, 0px) + 0.9rem); right: max(1rem, calc((100vw - 32rem) / 2 + 1rem)); transition: top 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out; width: 48px; height: 48px; border-radius: 50%; border: 0; background: var(--krem); color: var(--yaprak); display: grid; place-items: center; }
+.c-zil { position: fixed; z-index: 11; top: calc(env(safe-area-inset-top, 0px) + 0.9rem); right: max(1rem, calc((100vw - 32rem) / 2 + 1rem)); transition: transform 0.2s ease-out; width: 48px; height: 48px; border-radius: 50%; border: 0; background: var(--krem); color: var(--yaprak); display: grid; place-items: center; }
 .c-rozet { position: absolute; top: -3px; right: -3px; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 11px; background: #D92D20; color: #fff; box-shadow: 0 0 0 2px var(--krem); animation: c-nabiz 2s ease-out infinite; font: 700 0.8125rem/22px var(--govde); text-align: center; }
 .c-rozet:empty { display: none; }
 @keyframes c-nabiz { 0% { box-shadow: 0 0 0 2px var(--krem), 0 0 0 2px rgb(217 45 32 / 0.6); } 70%, 100% { box-shadow: 0 0 0 2px var(--krem), 0 0 0 11px rgb(217 45 32 / 0); } }
 @media (prefers-reduced-motion: reduce) { .c-rozet { animation: none; } }
 .zil-yapisik .c-sekme { margin-right: 4rem; }
 .zil-yapisik body::after { content: ""; position: fixed; z-index: 10; top: 0; right: max(0px, calc((100vw - 32rem) / 2)); width: 4rem; height: calc(env(safe-area-inset-top, 0px) + 48px); background: var(--yaprak-koyu); }
-.zil-yapisik .c-zil { top: calc(env(safe-area-inset-top, 0px) + 2px); width: 44px; height: 44px; }
+.zil-yapisik .c-zil { transform: translateY(calc(2px - 0.9rem)) scale(0.917); }
 .zil-yapisik .c-panel, .zil-yapisik .c-toast { top: calc(env(safe-area-inset-top, 0px) + 3.3rem); }
 @media (prefers-reduced-motion: reduce) { .c-zil { transition: none; } }
-.c-panel, .c-toast { position: fixed; z-index: 10; top: calc(env(safe-area-inset-top, 0px) + 4.4rem); right: max(0.75rem, calc((100vw - 32rem) / 2 + 0.75rem)); width: min(21rem, calc(100vw - 1.5rem)); background: var(--krem); color: var(--murekkep); border: 2px solid var(--yaprak); border-radius: 6px; box-shadow: 0 8px 24px rgb(22 56 34 / 0.18); }
+.c-panel, .c-toast { position: fixed; z-index: 10; top: calc(env(safe-area-inset-top, 0px) + 4.4rem); right: max(0.75rem, calc((100vw - 32rem) / 2 + 0.75rem)); width: min(21rem, calc(100vw - 1.5rem)); background: var(--krem); color: var(--murekkep); border: 2px solid var(--yaprak); border-radius: 6px; box-shadow: 0 4px 0 rgb(22 56 34 / 0.2); }
 .c-panel { padding: 0.4rem 0.9rem 0.3rem; }
 .c-panel-bas { margin: 0.4rem 0 0.2rem; font: 800 1.25rem/1.2 "Bricolage Grotesque", var(--govde); color: var(--yaprak); }
 .c-panel ul { list-style: none; margin: 0; padding: 0; }

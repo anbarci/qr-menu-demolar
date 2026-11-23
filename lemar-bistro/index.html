@@ -178,11 +178,11 @@ h1,h2,h3{text-wrap:balance}
 
 <script src="veri.js"></script>
 <script>
-// orta kat ve teras ikisi de canlı müzik katı: aynı menü
+// orta kat ve teras canlı müzik menüsünü paylaşır; terasta kahvaltı verilmez
 var KATLAR = {
   bahce: {no:'Kat 1', ad:'Bahçe', menu:'bahce', video:'kat1'},
   orta:  {no:'Kat 2', ad:'Orta Kat', menu:'teras', video:'kat2'},
-  teras: {no:'Kat 3', ad:'Teras', menu:'teras', video:'kat3'}
+  teras: {no:'Kat 3', ad:'Teras', menu:'teras', video:'kat3', haric:['Kahvaltı']}
 };
 var $ = function(s){return document.querySelector(s)};
 var menu = $('#menu'), liste = $('#liste'), cipler = $('#cipler'), ara = $('#ara');
@@ -195,7 +195,9 @@ function baslikHal(s){return s===s.toLocaleUpperCase('tr') ? s.charAt(0)+tr(s.sl
 
 function ciz(){
   var q = tr(ara.value.trim()), html = '', cip = '';
+  var haric = KATLAR[aktif].haric || [];
   VERI[KATLAR[aktif].menu].forEach(function(k){
+    if(haric.indexOf(k.ad) > -1) return;
     var us = k.urunler.filter(function(u){return !q || tr(u.ad+' '+u.icerik+' '+k.ad).indexOf(q) > -1});
     if(!us.length) return;
     var ad = baslikHal(k.ad);

@@ -178,10 +178,10 @@ h1,h2,h3{text-wrap:balance}
 
 <script src="veri.js"></script>
 <script>
-// orta kat ve teras canlı müzik menüsünü paylaşır; terasta kahvaltı verilmez
+// orta kat ve teras aynı canlı müzik menüsü, ikisinde de kahvaltı yok; bahçe kendi menüsü
 var KATLAR = {
   bahce: {no:'Kat 1', ad:'Bahçe', menu:'bahce', video:'kat1'},
-  orta:  {no:'Kat 2', ad:'Orta Kat', menu:'teras', video:'kat2'},
+  orta:  {no:'Kat 2', ad:'Orta Kat', menu:'teras', video:'kat2', haric:['Kahvaltı']},
   teras: {no:'Kat 3', ad:'Teras', menu:'teras', video:'kat3', haric:['Kahvaltı']}
 };
 var $ = function(s){return document.querySelector(s)};

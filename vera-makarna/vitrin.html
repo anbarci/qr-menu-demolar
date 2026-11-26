@@ -80,14 +80,12 @@ body{background:var(--duvar);color:var(--murekkep);font:400 1rem/1.5 var(--cf)}
 .kucuk img{width:3.6rem;height:3.6rem;object-fit:contain;filter:drop-shadow(0 4px 5px var(--golge))}
 .kucuk a[aria-current=true]{background:var(--cam);box-shadow:0 6px 18px var(--golge);color:var(--murekkep)}
 .kart{margin-top:.6rem;padding:1rem 1.1rem 1.05rem;border-radius:24px;background:var(--cam);border:1px solid var(--cam-kenar);box-shadow:0 10px 30px var(--golge2);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-.sekme{display:flex;gap:1.2rem;font-size:.8125rem;font-weight:700;color:var(--soluk);border-bottom:1px solid var(--cizgi);padding-bottom:.5rem}
-.sekme b{color:var(--murekkep);position:relative}.sekme b::after{content:"";position:absolute;left:0;right:0;bottom:calc(-.5rem - 1px);height:2px;background:var(--murekkep)}
-.kart-ic{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.4rem .9rem;align-items:center;margin-top:.85rem}
-.kare{grid-row:span 2;display:grid;place-items:center;width:4.6rem;height:4.6rem;border-radius:16px;background:var(--k,var(--k1));font-weight:900;font-size:1.35rem;line-height:1;letter-spacing:-.02em;text-align:center}
-.kare small{display:block;font-size:.75rem;font-weight:700;letter-spacing:0;margin-top:.15rem}
+.kart-ic{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.75rem .9rem;align-items:center}
+.kare{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2rem;width:4.6rem;height:4.6rem;border-radius:16px;background:var(--k,var(--k1));font-weight:900;font-size:1.35rem;line-height:1;letter-spacing:-.02em;text-align:center}
+.kare small{font-size:.75rem;font-weight:600;letter-spacing:0}
 .kart h2{margin:0;font-size:1.15rem;font-weight:800;line-height:1.2}
-.kart .kat{margin:0;font-size:.8125rem;font-weight:600;color:var(--soluk)}
-.kart .ac{grid-column:1/-1;min-height:2.9em;margin:.2rem 0 0;font-size:.9375rem;color:var(--soluk);line-height:1.45}
+.kart .kat{margin:.2rem 0 0;font-size:.8125rem;font-weight:600;color:var(--soluk)}
+.kart .ac{grid-column:1/-1;margin:0;font-size:.9375rem;color:var(--soluk);line-height:1.45}
 .pes,.kampanya{max-width:48rem;margin-left:auto;margin-right:auto}
 .pes{margin-top:1.6rem;padding:1.1rem;border-radius:24px;background:var(--bordo);color:var(--beyaz);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.2rem 1rem;align-items:center}
 .pes p{margin:0}.pes .k{font-size:.8125rem;font-weight:700;color:var(--yay2);letter-spacing:.04em}
@@ -98,8 +96,8 @@ body{background:var(--duvar);color:var(--murekkep);font:400 1rem/1.5 var(--cf)}
 .kampanya{margin-top:1rem}
 .c-kart{display:flex;justify-content:space-between;gap:.8rem;align-items:center;padding:.9rem 1rem;border-radius:20px;background:var(--cam);border:1px solid var(--cam-kenar);box-shadow:0 6px 18px var(--golge2)}
 .c-kart b{display:block;font-size:1rem;font-weight:800}.c-kart p{margin:.15rem 0 0;font-size:.875rem;color:var(--soluk)}
-.c-kart .kare{grid-row:auto;width:auto;height:auto;padding:.5rem .7rem;font-size:1.1rem}
-.c-kart .kare s{display:block;font-size:.75rem;font-weight:600;color:var(--murekkep)}
+.c-kart .kare{flex-shrink:0;gap:.1rem;width:auto;height:auto;min-width:4.6rem;padding:.5rem .7rem;font-size:1.1rem}
+.c-kart .kare s{font-size:.75rem;font-weight:600;color:var(--murekkep)}
 .kampanya .c-nokta{color:var(--murekkep)}
 .menu{padding-bottom:7rem}
 .bolum{padding-top:2rem;scroll-margin-top:1rem}
@@ -168,8 +166,8 @@ body.vitrinde .dock{transform:translateY(calc(100% + 1.5rem));opacity:0;visibili
 <div class="eylem"><a class="git" href="#u-tavuklu-mantarli-makarna"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5Z"/></svg>Menüde gör</a><a href="tel:+905079122554"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Paket sipariş</a></div></div>
 <div class="tabak-alan"><img src="medya/kesik/b06.webp" alt="Tavuklu Mantarlı Makarna" width="720" height="567" fetchpriority="high"></div>
 <div class="serit" hidden><button class="ok geri" type="button" aria-label="Önceki tabak"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><ul class="kucuk" aria-label="Şefin seçimi tabaklar"><li><a href="#u-tavuklu-mantarli-makarna" aria-current="true"><img src="medya/kesik/k06.webp" alt="" width="240" height="200">Tavuklu Mantarlı Makarna</a></li><li><a href="#u-izgara-tavuk-gogus" aria-current="false"><img src="medya/kesik/k21.webp" alt="" width="240" height="200">Izgara Tavuk Göğüs</a></li><li><a href="#u-mac-cheese" aria-current="false"><img src="medya/kesik/k12.webp" alt="" width="240" height="200">Mac &amp; Cheese</a></li><li><a href="#u-3-renkli-tortellini" aria-current="false"><img src="medya/kesik/k16.webp" alt="" width="240" height="200">3 Renkli Tortellini</a></li><li><a href="#u-izgara-kofte" aria-current="false"><img src="medya/kesik/k28.webp" alt="" width="240" height="200">Izgara Köfte</a></li><li><a href="#u-penne-arrabbiata" aria-current="false"><img src="medya/kesik/k05.webp" alt="" width="240" height="200">Penne Arrabbiata</a></li></ul><button class="ok ileri" type="button" aria-label="Sonraki tabak"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></div>
-<div class="kart" aria-live="off"><div class="sekme" aria-hidden="true"><b>Tabak</b><span>İçindekiler</span></div>
-<div class="kart-ic"><span class="kare" style="--k:var(--k1)">380 ₺ <small>porsiyon</small></span><h2>Tavuklu Mantarlı Makarna</h2><p class="kat">Makarnalar ve mantı</p><p class="ac">Krema, 150 g tavuk, mantar, soya sos</p></div></div>
+<div class="kart" aria-live="off">
+<div class="kart-ic"><span class="kare" style="--k:var(--k1)">380 ₺ <small>porsiyon</small></span><div><h2>Tavuklu Mantarlı Makarna</h2><p class="kat">Makarnalar ve mantı</p></div><p class="ac">Krema, 150 g tavuk, mantar, soya sos</p></div></div>
 </section>
 <section class="pes" id="pes" aria-labelledby="h-pes">
 <h2 id="h-pes"><span class="ince">Pes diyene kadar</span> <span class="kalin">MAKARNA</span></h2>

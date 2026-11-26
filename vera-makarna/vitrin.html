@@ -52,7 +52,7 @@ h1,h2,h3{text-wrap:balance;overflow-wrap:anywhere}p{text-wrap:pretty}
 html,body{overflow-x:clip}
 :focus-visible{outline-color:var(--kizil)}
 body{background:var(--duvar);color:var(--murekkep);font:400 1rem/1.5 var(--cf)}
-.sahne{position:relative;overflow:hidden;padding-top:calc(env(safe-area-inset-top,0px) + .9rem)}
+.sahne{position:relative;overflow:clip;padding-top:calc(env(safe-area-inset-top,0px) + .9rem)}
 .sahne::before{content:"";position:absolute;z-index:-1;width:150vw;max-width:70rem;aspect-ratio:1;left:-10vw;top:-34vw;border-radius:50%;border:clamp(2.5rem,12vw,6rem) solid var(--yay);opacity:.8}
 .sahne::after{content:"";position:absolute;z-index:-1;width:60vw;max-width:26rem;aspect-ratio:1;right:-22vw;top:42%;border-radius:50%;background:var(--yay2)}
 .cubuk{display:flex;align-items:center;gap:.6rem;min-height:48px;padding-right:3.6rem}
@@ -61,9 +61,9 @@ body{background:var(--duvar);color:var(--murekkep);font:400 1rem/1.5 var(--cf)}
 .vitrin{display:grid;grid-template-columns:minmax(0,1fr);gap:.4rem;padding-top:1rem}
 .sira{margin:0;font-size:.875rem;font-weight:700;color:var(--soluk);letter-spacing:.02em}
 .sira span{color:var(--kizil)}
-.baslik{overflow-wrap:normal;margin:.1rem 0 0;line-height:.92;letter-spacing:-.01em}
+.baslik{overflow-wrap:normal;margin:.1rem 0 0;line-height:1.02;letter-spacing:-.01em}
 .baslik .ince{display:block;font-weight:200;font-size:clamp(1.7rem,8.4vw,3.2rem)}
-.baslik .kalin{display:block;font-weight:900;font-size:clamp(2.3rem,12vw,4.6rem);color:var(--murekkep);letter-spacing:-.03em}
+.baslik .kalin{display:block;padding-top:.04em;font-weight:900;font-size:clamp(2.3rem,12vw,4.6rem);color:var(--murekkep);letter-spacing:-.03em}
 .tabak-alan{position:relative;height:min(84vw,24rem);margin:0 -1rem}
 .tabak-alan img{position:absolute;left:50%;top:50%;width:min(86vw,24rem);height:auto;max-height:100%;object-fit:contain;transform:translate(-50%,-50%);filter:drop-shadow(0 18px 22px var(--golge))}
 .tabak-alan img.gir{animation:gir .7s cubic-bezier(.2,.8,.2,1)}
@@ -73,7 +73,7 @@ body{background:var(--duvar);color:var(--murekkep);font:400 1rem/1.5 var(--cf)}
 .eylem svg{width:18px;height:18px}
 .serit{display:flex;align-items:center;gap:.25rem;margin:.4rem -1rem 0}
 .ok{flex-shrink:0;width:44px;height:44px;border:0;background:none;display:grid;place-items:center;color:var(--murekkep)}
-.kucuk{flex:1;min-width:0;display:flex;gap:.35rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;list-style:none;margin:0;padding:.2rem 0}
+.kucuk{position:relative;flex:1;min-width:0;display:flex;gap:.35rem;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;list-style:none;margin:0;padding:.2rem 0}
 .kucuk::-webkit-scrollbar{display:none}
 .kucuk li{flex:0 0 5.4rem;scroll-snap-align:center}
 .kucuk a{display:grid;justify-items:center;gap:.25rem;padding:.5rem .25rem .45rem;border-radius:18px;text-decoration:none;text-align:center;font-size:.75rem;font-weight:600;line-height:1.2;color:var(--soluk);transition:background .25s ease-out,box-shadow .25s ease-out}
@@ -87,11 +87,12 @@ body{background:var(--duvar);color:var(--murekkep);font:400 1rem/1.5 var(--cf)}
 .kare small{display:block;font-size:.75rem;font-weight:700;letter-spacing:0;margin-top:.15rem}
 .kart h2{margin:0;font-size:1.15rem;font-weight:800;line-height:1.2}
 .kart .kat{margin:0;font-size:.8125rem;font-weight:600;color:var(--soluk)}
-.kart .ac{grid-column:1/-1;margin:.2rem 0 0;font-size:.9375rem;color:var(--soluk);line-height:1.45}
+.kart .ac{grid-column:1/-1;min-height:2.9em;margin:.2rem 0 0;font-size:.9375rem;color:var(--soluk);line-height:1.45}
+.pes,.kampanya{max-width:48rem;margin-left:auto;margin-right:auto}
 .pes{margin-top:1.6rem;padding:1.1rem;border-radius:24px;background:var(--bordo);color:var(--beyaz);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.2rem 1rem;align-items:center}
 .pes p{margin:0}.pes .k{font-size:.8125rem;font-weight:700;color:var(--yay2);letter-spacing:.04em}
-.pes h2{margin:0;line-height:1}.pes h2 .ince{font-weight:200;font-size:1.5rem;display:block}.pes h2 .kalin{font-weight:900;font-size:2.1rem;display:block;letter-spacing:-.02em}
-.pes .fiyat{grid-row:span 3;font-weight:900;font-size:2.4rem;line-height:1;letter-spacing:-.03em;text-align:right}
+.pes h2{margin:0;line-height:1;overflow-wrap:normal}.pes h2 .ince{font-weight:200;font-size:clamp(1.2rem,6vw,1.5rem);display:block}.pes h2 .kalin{font-weight:900;font-size:clamp(1.6rem,8vw,2.1rem);display:block;letter-spacing:-.02em}
+.pes .fiyat{grid-row:span 2;white-space:nowrap;font-weight:900;font-size:clamp(1.8rem,9vw,2.4rem);line-height:1;letter-spacing:-.03em;text-align:right}
 .pes .fiyat small{display:block;font-size:.75rem;font-weight:700;letter-spacing:0;color:var(--yay2)}
 .pes .not{grid-column:1/-1;font-size:.8125rem;color:var(--yay);margin-top:.4rem}
 .kampanya{margin-top:1rem}
@@ -118,8 +119,10 @@ body{background:var(--duvar);color:var(--murekkep);font:400 1rem/1.5 var(--cf)}
 .icecek span{flex:1;min-width:0}.icecek small{display:block;color:var(--soluk);font-size:.8125rem}
 .icecek b{font-weight:900}
 .dock{position:fixed;z-index:8;left:.75rem;right:.75rem;margin:0 auto;max-width:36rem;bottom:calc(env(safe-area-inset-bottom,0px) + .7rem);border-radius:24px;background:var(--cam);border:1px solid var(--cam-kenar);box-shadow:0 10px 30px var(--golge);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
-.dock ul{list-style:none;margin:0;padding:.35rem;display:flex;gap:.2rem;overflow-x:auto;scrollbar-width:none}
+.dock ul{position:relative;justify-content:safe center;list-style:none;margin:0;padding:.35rem;display:flex;gap:.2rem;overflow-x:auto;scrollbar-width:none}
 .dock ul::-webkit-scrollbar{display:none}
+.dock{transition:transform .35s ease-out,opacity .35s ease-out,visibility 0s}
+body.vitrinde .dock{transform:translateY(calc(100% + 1.5rem));opacity:0;visibility:hidden;transition:transform .35s ease-in,opacity .35s ease-in,visibility 0s .35s}
 .dock a{flex:0 0 auto;min-width:4.4rem;min-height:56px;display:grid;justify-items:center;align-content:center;gap:.15rem;padding:.3rem .4rem;border-radius:18px;text-decoration:none;font-size:.75rem;font-weight:700;color:var(--soluk);white-space:nowrap}
 .dock svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .dock a[aria-current=true]{background:var(--murekkep);color:var(--beyaz)}
@@ -133,16 +136,26 @@ body{background:var(--duvar);color:var(--murekkep);font:400 1rem/1.5 var(--cf)}
 .baglar a{display:inline-flex;align-items:center;min-height:44px;padding:0 1rem;border-radius:999px;background:var(--duvar);color:var(--murekkep);font-weight:800;text-decoration:none}
 .demo{font-size:.875rem;opacity:.85}
 .imza a{color:var(--yay2)}
-@media (min-width:60rem){
-.kap{max-width:72rem}
-.vitrin{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) 18rem;grid-template-areas:"tabak yazi kart" "serit serit kart";align-items:center;column-gap:2rem}
-.tabak-alan{grid-area:tabak;height:30rem;margin:0}.tabak-alan img{width:30rem;left:42%}
-.yazi{grid-area:yazi}.kart{grid-area:kart;align-self:start;margin-top:4rem}
+.yeni{animation:yeni .45s ease-out}
+@keyframes yeni{from{opacity:0;transform:translateY(.6rem)}}
+@media (min-width:56rem){
+.kap{max-width:64rem}
+.c-zil{right:max(1rem,calc((100vw - 64rem)/2 + 1rem))}.c-panel,.c-toast{right:max(.75rem,calc((100vw - 64rem)/2 + .75rem))}
+.vitrin{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"tabak yazi" "tabak kart" "serit serit";column-gap:2.5rem;align-items:center}
+.tabak-alan{grid-area:tabak;height:auto;aspect-ratio:1;max-height:30rem;margin:0}.tabak-alan img{width:min(100%,30rem)}
+.yazi{grid-area:yazi;align-self:end}.kart{grid-area:kart;align-self:start;max-width:24rem}
 .serit{grid-area:serit;margin:0}
-.baslik .ince{font-size:clamp(1.7rem,3vw,3rem)}.baslik .kalin{font-size:clamp(2.3rem,4.2vw,4.4rem)}
-.menu .kap,.alt .kap,.kampanya-kap{max-width:48rem}
+.baslik .ince{font-size:clamp(1.7rem,3.2vw,3rem)}.baslik .kalin{font-size:clamp(2.3rem,4.6vw,4.4rem)}
+.menu .kap,.alt .kap{max-width:48rem}
 }
-@media (prefers-reduced-motion:reduce){.tabak-alan img.gir{animation:none}}
+@media (min-width:80rem){
+.kap{max-width:72rem}
+.c-zil{right:calc((100vw - 72rem)/2 + 1rem)}.c-panel,.c-toast{right:calc((100vw - 72rem)/2 + .75rem)}
+.vitrin{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr) 18rem;grid-template-areas:"tabak yazi kart" "serit serit kart"}
+.yazi{align-self:center}.kart{align-self:start;margin-top:4rem}
+.baslik .kalin{font-size:clamp(2.3rem,3.6vw,4.4rem)}
+}
+@media (prefers-reduced-motion:reduce){.tabak-alan img.gir,.yeni{animation:none}.dock{transition:none!important}}
 </style>
 </head>
 <body>
@@ -155,7 +168,7 @@ body{background:var(--duvar);color:var(--murekkep);font:400 1rem/1.5 var(--cf)}
 <div class="eylem"><a class="git" href="#u-tavuklu-mantarli-makarna"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15l12-7.5Z"/></svg>Menüde gör</a><a href="tel:+905079122554"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Paket sipariş</a></div></div>
 <div class="tabak-alan"><img src="medya/kesik/b06.webp" alt="Tavuklu Mantarlı Makarna" width="720" height="567" fetchpriority="high"></div>
 <div class="serit" hidden><button class="ok geri" type="button" aria-label="Önceki tabak"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button><ul class="kucuk" aria-label="Şefin seçimi tabaklar"><li><a href="#u-tavuklu-mantarli-makarna" aria-current="true"><img src="medya/kesik/k06.webp" alt="" width="240" height="200">Tavuklu Mantarlı Makarna</a></li><li><a href="#u-izgara-tavuk-gogus" aria-current="false"><img src="medya/kesik/k21.webp" alt="" width="240" height="200">Izgara Tavuk Göğüs</a></li><li><a href="#u-mac-cheese" aria-current="false"><img src="medya/kesik/k12.webp" alt="" width="240" height="200">Mac &amp; Cheese</a></li><li><a href="#u-3-renkli-tortellini" aria-current="false"><img src="medya/kesik/k16.webp" alt="" width="240" height="200">3 Renkli Tortellini</a></li><li><a href="#u-izgara-kofte" aria-current="false"><img src="medya/kesik/k28.webp" alt="" width="240" height="200">Izgara Köfte</a></li><li><a href="#u-penne-arrabbiata" aria-current="false"><img src="medya/kesik/k05.webp" alt="" width="240" height="200">Penne Arrabbiata</a></li></ul><button class="ok ileri" type="button" aria-label="Sonraki tabak"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button></div>
-<div class="kart" aria-live="polite"><div class="sekme" aria-hidden="true"><b>Tabak</b><span>İçindekiler</span></div>
+<div class="kart" aria-live="off"><div class="sekme" aria-hidden="true"><b>Tabak</b><span>İçindekiler</span></div>
 <div class="kart-ic"><span class="kare" style="--k:var(--k1)">380 ₺ <small>porsiyon</small></span><h2>Tavuklu Mantarlı Makarna</h2><p class="kat">Makarnalar ve mantı</p><p class="ac">Krema, 150 g tavuk, mantar, soya sos</p></div></div>
 </section>
 <section class="pes" id="pes" aria-labelledby="h-pes">
@@ -221,32 +234,44 @@ body{background:var(--duvar);color:var(--murekkep);font:400 1rem/1.5 var(--cf)}
 })();
 </script><script>
 (function(){
-  var V=JSON.parse(document.getElementById('secki-veri').textContent),i=0,dur=false,t;
+  var V=JSON.parse(document.getElementById('secki-veri').textContent),i=0,dur=false,gorunur=true,sira=0,hazir={};
   var im=document.querySelector('.tabak-alan img'),ince=document.querySelector('.baslik .ince'),kalin=document.querySelector('.baslik .kalin'),
-      sira=document.querySelector('.sira span'),kare=document.querySelector('.kart .kare'),ad=document.querySelector('.kart h2'),
-      kat=document.querySelector('.kart .kat'),ac=document.querySelector('.kart .ac'),git=document.querySelector('.eylem .git'),
-      lk=[].slice.call(document.querySelectorAll('.kucuk a')),az=matchMedia('(prefers-reduced-motion: reduce)').matches;
+      no=document.querySelector('.sira span'),kart=document.querySelector('.kart'),kare=kart.querySelector('.kare'),ad=kart.querySelector('h2'),
+      kat=kart.querySelector('.kat'),ac=kart.querySelector('.ac'),git=document.querySelector('.eylem .git'),yazi=document.querySelector('.yazi'),
+      ic=kart.querySelector('.kart-ic'),ku=document.querySelector('.kucuk'),lk=[].slice.call(ku.querySelectorAll('a')),
+      az=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function al(v){if(!hazir[v.b]){var x=new Image();x.src=v.b;hazir[v.b]=x.decode?x.decode().catch(function(){}):Promise.resolve();}return hazir[v.b];}
+  addEventListener('load',function(){V.forEach(al);});
+  function oynat(e){if(az)return;e.classList.remove('gir','yeni');void e.offsetWidth;e.classList.add(e===im?'gir':'yeni');}
+  function ortala(n,kendi){var li=lk[n].parentNode;ku.scrollTo({left:li.offsetLeft-(ku.clientWidth-li.offsetWidth)/2,behavior:az||!kendi?'auto':'smooth'});}
   function goster(j,kendi){
-    i=(j+V.length)%V.length;var v=V[i];
-    im.classList.remove('gir');void im.offsetWidth;im.src=v.b;im.alt=v.ad;if(!az)im.classList.add('gir');
-    ince.textContent=v.ince;kalin.textContent=v.kalin;sira.textContent=String(i+1).padStart(2,'0');
-    kare.style.setProperty('--k',v.k);kare.firstChild.nodeValue=v.f+' ';ad.textContent=v.ad;kat.textContent=v.kat;ac.textContent=v.ac;git.href='#'+v.id;
-    lk.forEach(function(x,n){x.setAttribute('aria-current',n===i?'true':'false');});
-    if(kendi)lk[i].scrollIntoView({block:'nearest',inline:'center',behavior:az?'auto':'smooth'});
+    i=(j+V.length)%V.length;var v=V[i],s=++sira;
+    lk.forEach(function(x,n){x.setAttribute('aria-current',n===i?'true':'false');});ortala(i,kendi);
+    kart.setAttribute('aria-live',kendi?'polite':'off');
+    al(v).then(function(){
+      if(s!==sira)return;
+      im.src=v.b;im.alt=v.ad;oynat(im);
+      ince.textContent=v.ince;kalin.textContent=v.kalin;no.textContent=String(i+1).padStart(2,'0');
+      kare.style.setProperty('--k',v.k);kare.firstChild.nodeValue=v.f+' ';ad.textContent=v.ad;kat.textContent=v.kat;ac.textContent=v.ac;git.href='#'+v.id;
+      oynat(yazi);oynat(ic);
+    });
   }
   lk.forEach(function(x,n){x.addEventListener('click',function(e){e.preventDefault();dur=true;goster(n,true);});});
   document.querySelector('.ok.geri').addEventListener('click',function(){dur=true;goster(i-1,true);});
   document.querySelector('.ok.ileri').addEventListener('click',function(){dur=true;goster(i+1,true);});
-  var x0=null,alan=document.querySelector('.tabak-alan');
-  alan.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
-  alan.addEventListener('touchend',function(e){if(x0===null)return;var d=e.changedTouches[0].clientX-x0;x0=null;if(Math.abs(d)>40){dur=true;goster(i+(d<0?1:-1),true);}},{passive:true});
-  if(!az)t=setInterval(function(){if(dur||document.hidden)return;goster(i+1,false);},5000);
+  var x0=null,y0=0,alan=document.querySelector('.tabak-alan');
+  alan.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;y0=e.touches[0].clientY;},{passive:true});
+  alan.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;
+    if(Math.abs(dx)>40&&Math.abs(dx)>1.5*Math.abs(dy)){dur=true;goster(i+(dx<0?1:-1),true);}},{passive:true});
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){gorunur=es[0].isIntersecting;document.body.classList.toggle('vitrinde',gorunur);},{threshold:.35}).observe(document.querySelector('.vitrin'));
+  if(!az)setInterval(function(){if(dur||!gorunur||document.hidden)return;goster(i+1,false);},5000);
   document.querySelector('.serit').hidden=false;
 })();
 (function(){
-  var l=[].slice.call(document.querySelectorAll('.dock a')),b=l.map(function(x){return document.querySelector(x.getAttribute('href'));});
+  var ul=document.querySelector('.dock ul'),l=[].slice.call(ul.querySelectorAll('a')),b=l.map(function(x){return document.querySelector(x.getAttribute('href'));});
   if(!('IntersectionObserver' in window))return;
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var n=b.indexOf(e.target);l.forEach(function(x,j){x.setAttribute('aria-current',n===j?'true':'false');});l[n].scrollIntoView({block:'nearest',inline:'center'});});},{rootMargin:'-35% 0px -60% 0px'});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var n=b.indexOf(e.target),li=l[n].parentNode;
+    l.forEach(function(x,j){x.setAttribute('aria-current',n===j?'true':'false');});ul.scrollTo({left:li.offsetLeft-(ul.clientWidth-li.offsetWidth)/2});});},{rootMargin:'-35% 0px -60% 0px'});
   b.forEach(function(x){io.observe(x);});
 })();
 </script></body></html>

@@ -1,7 +1,7 @@
 // Kat kuralı: orta kat ve teras aynı canlı müzik menüsü, ikisinde kahvaltı ve omlet yok
 var LEMAR = (function(){
   var KATLAR = {
-    bahce: {no:'Kat 1', sira:1, ad:'Bahçe', menu:'bahce', video:'kat1', alt:'Açık hava, kahvaltı ve mutfak', canli:false, haric:[]},
+    bahce: {no:'Kat 1', sira:1, ad:'Bahçe', menu:'bahce', video:'kat1', alt:'Kahvaltı ve mutfak', canli:false, haric:[]},
     orta:  {no:'Kat 2', sira:2, ad:'Orta Kat', menu:'teras', video:'kat2', alt:'Salon, sahne ve bar', canli:true, haric:['Kahvaltı','Omlet Çeşitleri']},
     teras: {no:'Kat 3', sira:3, ad:'Teras', menu:'teras', video:'kat3', alt:'Sahne, bar ve nargile', canli:true, haric:['Kahvaltı','Omlet Çeşitleri']}
   };

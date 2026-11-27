@@ -49,10 +49,10 @@ h1,h2,h3{text-wrap:balance;overflow-wrap:anywhere}p{text-wrap:pretty}
 
 :root{--k1:#F6C9CF;--k2:#FBD3A8;--k3:#CFE0B4;--k4:#F7E08A;--golge2:rgb(60 30 20/.12);--duvar:#F2EFEA;--duvar2:#E6E1D9;--murekkep:#26211F;--soluk:#6A5F59;--bordo:#590100;--kizil:#A3162B;--yay:#F2D4CC;--yay2:#F7E2C6;--cam:rgb(255 253 250/.72);--cam-kenar:rgb(255 255 255/.9);--beyaz:#FFFDFA;--golge:rgb(60 30 20/.22);--cizgi:#DDD5CB;
 --cz:var(--beyaz);--cm:var(--murekkep);--cv:var(--kizil);--cc:#E4CFAF;--cb:var(--kizil);--cd:var(--kizil);--cdy:#FFFAF5;--ch:#A3260B;--cr:16px;--cf:"Albert Sans",system-ui,sans-serif}
-html,body{overflow-x:clip}
+html,body{overflow-x:hidden;overflow-x:clip}
 :focus-visible{outline-color:var(--kizil)}
 body{background:var(--duvar);color:var(--murekkep);font:400 1rem/1.5 var(--cf)}
-.sahne{position:relative;overflow:clip;padding-top:calc(env(safe-area-inset-top,0px) + .9rem)}
+.sahne{position:relative;overflow:hidden;overflow:clip;padding-top:calc(env(safe-area-inset-top,0px) + .9rem)}
 .tabak-alan::before{content:"";position:absolute;z-index:-1;left:50%;top:50%;width:150%;aspect-ratio:1;border-radius:50%;border:clamp(2.2rem,10vw,4.5rem) solid var(--yay-don,var(--yay));border-top-color:transparent;opacity:.75;transform:translate(-50%,-50%) rotate(calc(var(--don,0deg) - 30deg));transition:transform 1s cubic-bezier(.2,.8,.2,1),border-color .8s ease-out}
 .sahne::after{content:"";position:absolute;z-index:-1;width:60vw;max-width:26rem;aspect-ratio:1;right:-22vw;top:42%;border-radius:50%;background:var(--yay2)}
 .cubuk{display:flex;align-items:center;gap:.6rem;min-height:48px;padding-right:3.6rem}
@@ -66,11 +66,17 @@ body{background:var(--duvar);color:var(--murekkep);font:400 1rem/1.5 var(--cf)}
 .baslik .kalin{display:block;padding-top:.04em;font-weight:900;font-size:clamp(2.3rem,12vw,4.6rem);color:var(--murekkep);letter-spacing:-.03em}
 .tabak-alan{position:relative;height:min(84vw,24rem);margin:0 -1rem}
 .tabak-alan img{position:absolute;left:50%;top:50%;width:min(86vw,24rem);height:auto;max-height:100%;object-fit:contain;transform:translate(-50%,-50%);filter:drop-shadow(0 18px 22px var(--golge))}
-.tabak-alan{--yon:1}
-.tabak-alan img.gir{animation:gir .8s cubic-bezier(.2,.8,.2,1)}
-.tabak-alan img.cik{animation:cik .55s cubic-bezier(.5,0,.75,0) forwards;pointer-events:none}
-@keyframes gir{from{transform:translate(calc(-50% + var(--yon) * 70%),-50%) rotate(calc(var(--yon) * 70deg)) scale(.85);opacity:0}}
-@keyframes cik{to{transform:translate(calc(-50% - var(--yon) * 70%),-50%) rotate(calc(var(--yon) * -70deg)) scale(.85);opacity:0}}
+.tabak-alan img.gir{-webkit-animation:gir-i .8s cubic-bezier(.2,.8,.2,1);animation:gir-i .8s cubic-bezier(.2,.8,.2,1)}
+.tabak-alan img.cik{-webkit-animation:cik-i .55s cubic-bezier(.5,0,.75,0) forwards;animation:cik-i .55s cubic-bezier(.5,0,.75,0) forwards;pointer-events:none}
+.tabak-alan.geri img.gir{-webkit-animation-name:gir-g;animation-name:gir-g}.tabak-alan.geri img.cik{-webkit-animation-name:cik-g;animation-name:cik-g}
+@keyframes gir-i{from{transform:translate(20%,-50%) rotate(70deg) scale(.85);opacity:0}to{transform:translate(-50%,-50%)}}
+@keyframes gir-g{from{transform:translate(-120%,-50%) rotate(-70deg) scale(.85);opacity:0}to{transform:translate(-50%,-50%)}}
+@keyframes cik-i{from{transform:translate(-50%,-50%)}to{transform:translate(-120%,-50%) rotate(-70deg) scale(.85);opacity:0}}
+@keyframes cik-g{from{transform:translate(-50%,-50%)}to{transform:translate(20%,-50%) rotate(70deg) scale(.85);opacity:0}}
+@-webkit-keyframes gir-i{from{transform:translate(20%,-50%) rotate(70deg) scale(.85);opacity:0}to{transform:translate(-50%,-50%)}}
+@-webkit-keyframes gir-g{from{transform:translate(-120%,-50%) rotate(-70deg) scale(.85);opacity:0}to{transform:translate(-50%,-50%)}}
+@-webkit-keyframes cik-i{from{transform:translate(-50%,-50%)}to{transform:translate(-120%,-50%) rotate(-70deg) scale(.85);opacity:0}}
+@-webkit-keyframes cik-g{from{transform:translate(-50%,-50%)}to{transform:translate(20%,-50%) rotate(70deg) scale(.85);opacity:0}}
 .eylem{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem}
 .eylem a{display:inline-flex;align-items:center;gap:.45rem;min-height:44px;font-weight:700;font-size:.9375rem;text-decoration:none}
 .eylem svg{width:18px;height:18px}
@@ -156,7 +162,8 @@ body.vitrinde .dock{transform:translateY(calc(100% + 1.5rem));opacity:0;visibili
 .yazi{align-self:center}.kart{align-self:start;margin-top:4rem}
 .baslik .kalin{font-size:clamp(2.3rem,3.6vw,4.4rem)}
 }
-@media (prefers-reduced-motion:reduce){.tabak-alan img.gir,.yeni{animation:none}.dock,.tabak-alan::before{transition:none!important}}
+@keyframes sol{from{opacity:0}}@keyframes sol-cik{to{opacity:0}}
+@media (prefers-reduced-motion:reduce){.tabak-alan img.gir,.tabak-alan.geri img.gir,.yeni{animation:sol .35s ease-out}.tabak-alan img.cik,.tabak-alan.geri img.cik{animation:sol-cik .3s ease-out forwards}.dock,.tabak-alan::before{transition:none!important}}
 </style>
 </head>
 <body>
@@ -243,7 +250,7 @@ body.vitrinde .dock{transform:translateY(calc(100% + 1.5rem));opacity:0;visibili
       alan=document.querySelector('.tabak-alan'),az=matchMedia('(prefers-reduced-motion: reduce)').matches;
   function al(v){if(!hazir[v.b]){var x=new Image();x.src=v.b;hazir[v.b]=x.decode?x.decode().catch(function(){}):Promise.resolve();}return hazir[v.b];}
   addEventListener('load',function(){V.forEach(al);});
-  function oynat(e){if(az)return;e.classList.remove('gir','yeni');void e.offsetWidth;e.classList.add(e===im?'gir':'yeni');}
+  function oynat(e){e.classList.remove('gir','yeni');void e.offsetWidth;e.classList.add(e===im?'gir':'yeni');}
   function ortala(n,kendi){var li=lk[n].parentNode;ku.scrollTo({left:li.offsetLeft-(ku.clientWidth-li.offsetWidth)/2,behavior:az||!kendi?'auto':'smooth'});}
   function goster(j,kendi,yon){
     yon=yon||1;i=(j+V.length)%V.length;var v=V[i],s=++sira;
@@ -251,10 +258,10 @@ body.vitrinde .dock{transform:translateY(calc(100% + 1.5rem));opacity:0;visibili
     kart.setAttribute('aria-live',kendi?'polite':'off');
     al(v).then(function(){
       if(s!==sira)return;
-      if(!az){[].forEach.call(alan.querySelectorAll('img.cik'),function(x){x.remove();});
+      {[].forEach.call(alan.querySelectorAll('img.cik'),function(x){x.remove();});
         var eski=im.cloneNode();eski.className='cik';eski.alt='';eski.removeAttribute('fetchpriority');alan.insertBefore(eski,im);
-        eski.addEventListener('animationend',function(){eski.remove();});}
-      alan.style.setProperty('--yon',yon);aci-=yon*60;alan.style.setProperty('--don',aci+'deg');alan.style.setProperty('--yay-don',v.k);
+        eski.addEventListener('animationend',function(){eski.remove();});setTimeout(function(){eski.remove();},1200);}
+      alan.classList.toggle('geri',yon<0);aci-=yon*60;alan.style.setProperty('--don',aci+'deg');alan.style.setProperty('--yay-don',v.k);
       im.src=v.b;im.alt=v.ad;oynat(im);
       ince.textContent=v.ince;kalin.textContent=v.kalin;no.textContent=String(i+1).padStart(2,'0');
       kare.style.setProperty('--k',v.k);kare.firstChild.nodeValue=v.f+' ';ad.textContent=v.ad;kat.textContent=v.kat;ac.textContent=v.ac;git.href='#'+v.id;
@@ -269,7 +276,7 @@ body.vitrinde .dock{transform:translateY(calc(100% + 1.5rem));opacity:0;visibili
   alan.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;
     if(Math.abs(dx)>40&&Math.abs(dx)>1.5*Math.abs(dy)){dur=true;goster(i+(dx<0?1:-1),true,dx<0?1:-1);}},{passive:true});
   if('IntersectionObserver' in window)new IntersectionObserver(function(es){gorunur=es[0].isIntersecting;document.body.classList.toggle('vitrinde',gorunur);},{threshold:.35}).observe(document.querySelector('.vitrin'));
-  if(!az)setInterval(function(){if(dur||!gorunur||document.hidden)return;goster(i+1,false);},5000);
+  setInterval(function(){if(dur||!gorunur||document.hidden)return;goster(i+1,false);},5000);
   document.querySelector('.serit').hidden=false;
 })();
 (function(){

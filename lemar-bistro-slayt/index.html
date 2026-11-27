@@ -9,16 +9,16 @@
 <meta name="description" content="Lemar Bistro Denizli QR menüsü: Bahçe, Orta Kat ve Teras için kat seçin, canlı müzik ve mutfak menüsünü fiyatlarıyla görün.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Doto:wght@900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
 <style>/* Hallmark · shape: floor picker + single-column menu sheet · genre: modern-minimal · theme: custom (from the venue's LED marquee sign and tan guitar logo) · job: visit · idea: "the building in cross-section: pick your floor like an elevator, the menu slides up" · vibe: "black stage, yellow bulbs, live music"
  * paper: #0c0c0b · accent: #f7c32e · display: Archivo 62% width · body: Archivo · hero: three stacked floor bands with each floor's own video · nav: sticky floor switcher, search, category chips · footer: location, booking, Instagram · imagery: the venue's own floor videos · signature: the elevator rail 3-2-1 beside the floors
  * axes: dark/condensed-grotesque/marquee · posture: committed band (live music floors) · contrast: pass · fold: pass · v2.0.0 */
 :root{
   --ink:#0c0c0b; --panel:#161614; --panel2:#1d1d1a; --line:rgba(255,255,255,.09);
-  --led:#f7c32e; --led-ray:rgba(247,195,46,.15); --led-ring:rgba(247,195,46,.45); --led-glow:rgba(247,195,46,.6);
+  --led:#f7c32e; --led-ray:rgba(247,195,46,.15); --led-ring:rgba(247,195,46,.45);
   --tan:#cdb08a; --paper:#f3efe7; --muted:#a29d93; --dim:#8a857c; --rec:#c4161c;
   --shade-strong:rgba(8,8,7,.92); --shade-mid:rgba(8,8,7,.55); --shade-soft:rgba(8,8,7,.15); --shade-top:rgba(12,12,11,.35);
-  --font:'Archivo',system-ui,sans-serif; --font-led:'Doto','Archivo',monospace;
+  --font:'Archivo',system-ui,sans-serif;
   --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:20px; --s6:24px; --s7:28px; --s8:32px; --s10:40px;
   --r:6px; --tap:44px;
 }
@@ -39,7 +39,7 @@ h1,h2,h3{text-wrap:balance}
 .ust img{width:52px;height:52px;border-radius:50%;display:block}
 .ust p{font-size:13px;color:var(--muted);text-align:right;line-height:1.4}
 .ust p b{color:var(--paper);font-weight:600}
-.giris h1{font-stretch:62%;font-weight:900;text-transform:uppercase;font-size:clamp(44px,13.5vw,60px);line-height:1;margin:var(--s6) 0 var(--s4)}
+.giris h1{font-stretch:62%;font-weight:900;font-size:clamp(44px,13.5vw,60px);line-height:1;margin:var(--s6) 0 var(--s4)}
 
 /* bina: üstte teras, altta bahçe */
 .bina{flex:1;display:grid;grid-template-columns:36px minmax(0,1fr);gap:0 var(--s3);min-height:520px}
@@ -47,7 +47,8 @@ h1,h2,h3{text-wrap:balance}
 .ray::before{content:"";position:absolute;left:50%;top:var(--s5);bottom:var(--s5);width:1px;background:linear-gradient(var(--led),var(--led-ray))}
 .ray span{position:relative;align-self:center;justify-self:center;width:36px;height:36px;border-radius:50%;
   background:var(--ink);border:1px solid var(--led-ring);display:grid;place-items:center;
-  font-family:var(--font-led);font-weight:900;font-size:20px;color:var(--led);text-shadow:0 0 8px var(--led-glow)}
+  color:var(--led)}
+.ray svg{width:15px;height:21px}
 .katlar{display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:var(--s2)}
 .kat{position:relative;display:block;width:100%;text-align:left;border:1px solid transparent;border-radius:var(--r);overflow:hidden;
   background:var(--panel);cursor:pointer;isolation:isolate;min-height:164px;transition:border-color .2s}
@@ -56,15 +57,14 @@ h1,h2,h3{text-wrap:balance}
 .kat video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .kat::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--shade-strong) 0%,var(--shade-mid) 55%,var(--shade-soft) 100%)}
 .kat .ic{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--s4)}
-.kat .ad{font-stretch:62%;font-weight:900;text-transform:uppercase;font-size:44px;line-height:1}
+.kat .ad{font-stretch:62%;font-weight:900;font-size:44px;line-height:1}
 .kat .alt{margin-top:var(--s2);font-size:13.5px;color:var(--tan);font-weight:600;padding-right:var(--s10)}
 .kat .ok{position:absolute;right:var(--s3);bottom:var(--s3);width:var(--tap);height:var(--tap);border-radius:50%;background:var(--led);color:var(--ink);display:grid;place-items:center;transition:transform .2s}
 .kat:hover .ok{transform:translateX(2px)}
 .kat .ok svg{width:18px;height:18px}
 .canli{position:absolute;top:var(--s3);left:var(--s4);display:inline-flex;align-items:center;gap:var(--s2);
   font-size:12.5px;font-weight:700;color:var(--ink);background:var(--led);padding:var(--s1) var(--s2);border-radius:3px}
-.canli i{width:6px;height:6px;border-radius:50%;background:var(--rec);animation:nabiz 1.4s infinite}
-@keyframes nabiz{50%{opacity:.25}}
+.canli svg{width:13px;height:13px;flex:none}
 
 .baglar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s2);margin-top:var(--s4)}
 .baglar a{display:flex;align-items:center;justify-content:center;gap:var(--s2);min-height:var(--tap);padding:var(--s2) var(--s1);border:1px solid var(--line);border-radius:var(--r);font-size:13px;font-weight:600}
@@ -73,7 +73,7 @@ h1,h2,h3{text-wrap:balance}
 
 /* slayt: bu akşam sahnede */
 .slayt{margin-top:var(--s5)}
-.slaytlar{display:grid;grid-auto-flow:column;grid-auto-columns:100%;gap:var(--s3);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;border-radius:var(--r)}
+.slaytlar{min-height:248px;display:grid;grid-auto-flow:column;grid-auto-columns:100%;gap:var(--s3);overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain;border-radius:var(--r)}
 .slaytlar::-webkit-scrollbar{display:none}
 .slide{position:relative;height:248px;scroll-snap-align:start;overflow:hidden;border-radius:var(--r);background:var(--panel);isolation:isolate}
 .slide video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;z-index:-2}
@@ -82,11 +82,11 @@ h1,h2,h3{text-wrap:balance}
 .slide .alt-kisim{position:absolute;left:var(--s4);right:var(--s4);bottom:var(--s4);display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s3)}
 .slide .kim{min-width:0}
 .slide .kim p{font-size:13.5px;color:var(--tan);font-weight:600}
-.slide .kim h2{font-stretch:62%;font-weight:900;text-transform:uppercase;font-size:34px;line-height:1;margin-top:var(--s1)}
+.slide .kim h2{font-stretch:62%;font-weight:900;font-size:34px;line-height:1;margin-top:var(--s1)}
 .slide .git{flex:none;display:inline-flex;align-items:center;gap:var(--s2);min-height:var(--tap);padding:0 var(--s4);border-radius:var(--r);background:var(--led);color:var(--ink);font-size:14px;font-weight:700}
 .slide .git:hover{background:var(--paper)}
 .slide .git svg{width:16px;height:16px}
-.noktalar{display:flex;justify-content:center;gap:var(--s1);margin-top:var(--s1)}
+.noktalar{min-height:var(--tap);display:flex;justify-content:center;gap:var(--s1);margin-top:var(--s1)}
 .noktalar button{width:var(--tap);height:var(--tap);display:grid;place-items:center;border:0;background:none;cursor:pointer}
 .noktalar button::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--dim)}
 .noktalar button[aria-current=true]::before{width:24px;border-radius:4px;background:var(--led)}
@@ -102,8 +102,12 @@ h1,h2,h3{text-wrap:balance}
 .geri{position:absolute;top:calc(var(--s3) + env(safe-area-inset-top));left:var(--s3);width:var(--tap);height:var(--tap);border-radius:50%;border:1px solid var(--line);background:var(--ink);display:grid;place-items:center;cursor:pointer}
 .geri svg{width:20px;height:20px}
 .kapak .yazi{position:absolute;left:var(--s4);right:var(--s4);bottom:var(--s3)}
-.kapak .yazi p{font-family:var(--font-led);font-weight:900;font-size:16px;color:var(--led);text-shadow:0 0 8px var(--led-glow)}
-.kapak .yazi h2{font-stretch:62%;font-weight:900;text-transform:uppercase;font-size:52px;line-height:1}
+.kapak .yazi #katNo{line-height:0;color:var(--led)}
+.kapak .yazi #katNo svg{height:14px;width:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.atla{position:absolute;left:var(--s3);top:var(--s3);z-index:40;padding:var(--s3) var(--s4);border-radius:var(--r);background:var(--led);color:var(--ink);font-weight:700;transform:translateY(-200%)}
+.atla:focus{transform:none}
+.kapak .yazi h2{font-stretch:62%;font-weight:900;font-size:52px;line-height:1}
 
 .yapis{position:sticky;top:0;z-index:5;background:var(--ink);border-bottom:1px solid var(--line);padding-top:var(--s3)}
 .secici{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0 var(--s4);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -123,7 +127,7 @@ h1,h2,h3{text-wrap:balance}
 .cipler button.aktif{border-color:var(--led);color:var(--led)}
 
 .bolum{padding:var(--s6) var(--s4) var(--s1);scroll-margin-top:184px}
-.bolum h3{font-stretch:62%;font-weight:900;text-transform:uppercase;font-size:30px;line-height:1;margin-bottom:var(--s2)}
+.bolum h3{font-stretch:62%;font-weight:900;font-size:30px;line-height:1;margin-bottom:var(--s2)}
 .urun{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--s1) var(--s4);padding:var(--s3) 0;border-bottom:1px solid var(--line)}
 .urun .n{font-weight:600;font-size:16px}
 .urun .f{font-weight:700;font-size:16px;color:var(--led);white-space:nowrap;font-variant-numeric:tabular-nums}
@@ -136,6 +140,7 @@ h1,h2,h3{text-wrap:balance}
 </style>
 </head>
 <body>
+<a class="atla" href="#katlar">Kat seçimine atla</a>
 <div class="app">
 
   <main class="giris">
@@ -149,26 +154,26 @@ h1,h2,h3{text-wrap:balance}
       <div class="noktalar" id="noktalar"></div>
     </section>
 
-    <h1>Hangi<br>kattasınız?</h1>
+    <h1>HANGİ<br> KATTASINIZ?</h1>
 
     <div class="bina">
-      <div class="ray" aria-hidden="true"><span>3</span><span>2</span><span>1</span></div>
-      <nav class="katlar" aria-label="Kat seçimi">
+      <div class="ray" aria-hidden="true"><span data-led="3"></span><span data-led="2"></span><span data-led="1"></span></div>
+      <nav class="katlar" id="katlar" aria-label="Kat seçimi">
         <button class="kat" data-kat="teras">
-          <video src="medya/kat3.mp4" poster="medya/kat3.jpg" muted playsinline preload="none" aria-hidden="true"></video>
-          <span class="canli"><i></i>Canlı müzik</span>
-          <span class="ic"><span class="ad">Teras</span><span class="alt">Sahne, bar ve nargile</span></span>
+          <video src="medya/kat3.mp4" poster="medya/kat3.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
+          <span class="canli"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg>Canlı müzik</span>
+          <span class="ic"><span class="ad">TERAS</span> <span class="alt">Sahne, bar ve nargile</span></span>
           <span class="ok"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </button>
         <button class="kat" data-kat="orta">
-          <video src="medya/kat2.mp4" poster="medya/kat2.jpg" muted playsinline preload="none" aria-hidden="true"></video>
-          <span class="canli"><i></i>Canlı müzik</span>
-          <span class="ic"><span class="ad">Orta Kat</span><span class="alt">Salon, sahne ve bar</span></span>
+          <video src="medya/kat2.mp4" poster="medya/kat2.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
+          <span class="canli"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg>Canlı müzik</span>
+          <span class="ic"><span class="ad">ORTA KAT</span> <span class="alt">Salon, sahne ve bar</span></span>
           <span class="ok"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </button>
         <button class="kat" data-kat="bahce">
-          <video src="medya/kat1.mp4" poster="medya/kat1.jpg" muted playsinline preload="none" aria-hidden="true"></video>
-          <span class="ic"><span class="ad">Bahçe</span><span class="alt">Kahvaltı ve mutfak</span></span>
+          <video src="medya/kat1.mp4" poster="medya/kat1.jpg" muted playsinline loop preload="none" aria-hidden="true"></video>
+          <span class="ic"><span class="ad">BAHÇE</span> <span class="alt">Kahvaltı ve mutfak</span></span>
           <span class="ok"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
         </button>
       </nav>
@@ -209,6 +214,23 @@ var $ = function(s){return document.querySelector(s)};
 var menu = $('#menu'), liste = $('#liste'), cipler = $('#cipler'), ara = $('#ara');
 var hareketsiz = matchMedia('(prefers-reduced-motion: reduce)').matches;
 var aktif = null;
+// başlıklar CSS ile değil metinde büyük yazılır; Türkçe i/İ doğru çıksın diye
+function buyuk(t){ return t.toLocaleUpperCase('tr'); }
+// kat videoları sayfa yüklendikten sonra iner, ilk görüntüyü yavaşlatmasın
+var yuklendi = document.readyState === 'complete';
+addEventListener('load', function(){ yuklendi = true; slaytOynat(); });
+// LED tabela: 5x7 nokta matrisi, yanmayan noktalar soluk
+var LED = {'1':'00100011000010000100001000010001110','2':'01110100010000100010001000100011111','3':'11110000010000101110000010000111110',
+  'K':'10001100101010011000101001001010001','A':'01110100011000111111100011000110001','T':'11111001000010000100001000010000100',' ':'00000000000000000000000000000000000'};
+function led(metin){
+  var r = 1.5, a = 4, w = metin.length * 6 * a - a, h = 7 * a, d = '';
+  metin.split('').forEach(function(c, i){
+    var b = LED[c] || LED[' '];
+    for(var n = 0; n < 35; n++) d += '<circle cx="'+(i*6*a + (n%5)*a + a/2)+'" cy="'+(Math.floor(n/5)*a + a/2)+'" r="'+r+'"'+(b[n] === '1' ? '' : ' opacity=".18"')+'/>';
+  });
+  return '<svg aria-hidden="true" viewBox="0 0 '+w+' '+h+'" fill="currentColor">'+d+'</svg>';
+}
+document.querySelectorAll('[data-led]').forEach(function(e){ e.innerHTML = led(e.dataset.led); });
 // 27 Kasım Cuma programı Lemar hikâyesinden, afişlerde saat yok; videolar sanatçıların kendi hesaplarından (Osman @yyosman_ 27 Kasım duyurusu, Elif Şengül YouTube a9anFQscs0Q, başka mekân tabelası kadraj dışında)
 // shortcut: program elle yazılı, gerçekte işletmenin panelinden günlük gelir
 var DUYURU = [
@@ -219,8 +241,8 @@ $('#slaytlar').innerHTML = DUYURU.map(function(d, i){
   var k = KATLAR[d.kat];
   return '<article class="slide" id="slayt'+i+'" aria-roledescription="slayt" aria-label="'+(i+1)+' / '+DUYURU.length+'">'
     + '<video src="medya/'+d.video+'.mp4" poster="medya/'+d.video+'.webp" muted loop playsinline preload="metadata" aria-hidden="true"></video>'
-    + '<span class="canli"><i></i>Bu akşam'+(d.saat ? ' '+d.saat : '')+'</span>'
-    + '<div class="alt-kisim"><div class="kim"><p>'+k.no+', '+k.ad+'</p><h2>'+kacis(d.sanatci)+'</h2></div>'
+    + '<span class="canli"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg>Bu akşam'+(d.saat ? ' '+d.saat : '')+'</span>'
+    + '<div class="alt-kisim"><div class="kim"><p>'+k.no+', '+k.ad+'</p><h2>'+kacis(buyuk(d.sanatci))+'</h2></div>'
     + '<a class="git" href="#'+d.kat+'">'+k.ad+'<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>';
 }).join('');
 $('#noktalar').innerHTML = DUYURU.map(function(d, i){ return '<button data-slayt="'+i+'" aria-label="'+(i+1)+'. duyuru: '+KATLAR[d.kat].ad+'" aria-current="'+(i === 0)+'"></button>'; }).join('');
@@ -230,11 +252,22 @@ $('#noktalar').addEventListener('click', function(e){
 });
 // yalnız görünen slayt oynar; menü açıkken hiçbiri
 var gorunen = 0;
+// görünen slayt ve ekrandaki kat bantları oynar; menü açıkken ya da hareket azaltmada hiçbiri
 function slaytOynat(){
+  var acik = menu.classList.contains('acik') || document.hidden;
   document.querySelectorAll('.slide video').forEach(function(v, i){
-    if(i === gorunen && !hareketsiz && !menu.classList.contains('acik')) v.play().catch(function(){}); else v.pause();
+    if(i === gorunen && !hareketsiz && !acik) v.play().catch(function(){}); else v.pause();
+  });
+  document.querySelectorAll('.kat video').forEach(function(v){
+    if(v.dataset.gorunur && yuklendi && !hareketsiz && !acik) v.play().catch(function(){}); else v.pause();
   });
 }
+var bandGozcu = new IntersectionObserver(function(es){
+  es.forEach(function(e){ e.target.dataset.gorunur = e.isIntersecting ? '1' : ''; });
+  slaytOynat();
+}, {threshold: .5});
+document.querySelectorAll('.kat video').forEach(function(v){ bandGozcu.observe(v); });
+document.addEventListener('visibilitychange', slaytOynat);
 var slaytGozcu = new IntersectionObserver(function(es){
   es.forEach(function(e){
     if(!e.isIntersecting) return;
@@ -249,7 +282,7 @@ function ciz(){
   var html = '', cip = '';
   LEMAR.kategoriler(aktif, ara.value).forEach(function(k){
     cip += '<button data-git="b'+k.id+'">'+kacis(k.ad)+'</button>';
-    html += '<section class="bolum" id="b'+k.id+'"><h3>'+kacis(k.ad)+'</h3>';
+    html += '<section class="bolum" id="b'+k.id+'"><h3>'+kacis(buyuk(k.ad))+'</h3>';
     k.urunler.forEach(function(u){
       var d = LEMAR.icerik(u), m = LEMAR.meta(u);
       html += '<div class="urun"><span class="n">'+kacis(u.ad)+'</span><span class="f">'+(u.fiyat ? kacis(u.fiyat)+' ₺' : '')+'</span>'
@@ -268,8 +301,8 @@ function ac(kat){
     aktif = kat;
     var eski = $('#kapak video'); if(eski) eski.remove();
     $('#kapak').insertAdjacentHTML('afterbegin', '<video src="medya/'+k.video+'.mp4" poster="medya/'+k.video+'.jpg" muted loop playsinline aria-hidden="true"'+(hareketsiz ? '' : ' autoplay')+'></video>');
-    $('#katNo').textContent = k.no;
-    $('#katAd').textContent = k.ad;
+    $('#katNo').innerHTML = '<span class="sr">'+k.no+'</span>' + led('KAT ' + k.no.slice(-1));
+    $('#katAd').textContent = buyuk(k.ad);
     document.querySelectorAll('[data-sec]').forEach(function(b){b.setAttribute('aria-pressed', b.dataset.sec===kat)});
     ara.value = '';
     ciz();
